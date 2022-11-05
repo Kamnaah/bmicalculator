@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI CALCULATOR</title>
+    <link rel="stylesheet" type="text/css"href="BMI.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="math">
+        <h1>BMI CALCULATOR</h1>
+        <label>Age (age between 2-120)</label>
+        <input type="number" id="age" required>
+        <br>
+        <div>
+            <p>Gender</p>
+            <input type="radio" id="femal" name="gender" value="female">
+            <label for="female">female</label><br>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">male</label><br>
+        </div>
+        <br>
+        <label>Height in CM</label>
+        <input type="number" id="height" required>
+        <span id="error1"></span>
+        <br>
+        <label>Weight in KG</label>
+        <input class="number" id="weight" required>
+        <span id="error2"></span>
+        <br>
+       
+        <button id="btn"  onclick="bmi()">CALCULATE</button>
+        <button id="clear" >Clear</button>
+    </div>
+        <div class="result">
+            <p>RESULT:</p>
+            <p id="result"></p> 
+        </div>
+    </div>
+    <script>
+        function bmi(){
+            let weight=document.getElementById("weight").value;
+            let height=document.getElementById("height").value;
+            let age= document.getElementById("age").value;
+            let error1=document.getElementById("error1");
+            let error2=document.getElementById("error2");
+            if(age>120 || age<2){
+                let msg="please provide age between 2-120"
+                document.getElementsById("result").innerHTML=msg;
+            }
+            else {
+            if(height<=0){
+            let bmi="Positive Number only";
+                error1.innerText=bmi;
+                console.log(error);
+            }
+            if( weight<=0){
+                let bmi="Positive Number only";
+                error2.innerText=bmi;
+                console.log(error);  
+            }
+            else{
+            let bmi=(weight/(height*0.01)**2).toFixed(2);
+            document.getElementById("result").innerHTML =bmi+"kg/m2";
+            }
+            }
+        }
+        
+        let clr = document.getElementById("clear");
+clr.addEventListener("click",()=>{
+    let age=document.getElementById("age");
+    let height = document.getElementById("height");
+    let weight = document.getElementById("weight");
+    let height_er = document.getElementById("error1");
+    let weight_er = document.getElementById("error2");
+    let res = document.getElementById("result");
+    age.value=""
+    height.value="";
+    weight.value="";
+    height_er.value="";
+    weight_er.value="";
+    res.value=""
+})
+            </script>
+    
+</body>
+</html>
